@@ -34,16 +34,23 @@ class UserController implements ControllerInterface
             header('Location: /user');
             die;
         }
-        $obUser = new User();
-        $obUser->name = $_POST['name'];
-        $obUser->birthdate = $_POST['birthdate'];
-        $obUser->cpf = $_POST['cpf'];
-        $obUser->gender = $_POST['gender'];
-        $obUser->city = $_POST['city'];
-        $obUser->neighborhood = $_POST['neighborhood'];
-        $obUser->street = $_POST['street'];
-        $obUser->houseNumber = $_POST['house_number'];
-        $obUser->complement = $_POST['complement'];
+        // Cria um novo objeto User e atribui os valores
+        $userData = [
+            'name' => $_POST['name'],
+            'birthdate' => $_POST['birthdate'],
+            'cpf' => $_POST['cpf'],
+            'gender' => $_POST['gender'],
+            'city' => $_POST['city'],
+            'neighborhood' => $_POST['neighborhood'],
+            'street' => $_POST['street'],
+            'houseNumber' => $_POST['house_number'],
+            'complement' => $_POST['complement']
+        ];
+
+        // Cria um novo usuário
+        $obUser = User::make($userData);
+
+        // Salva o novo usuário no banco de dados
         $obUser->cadastrar();
 
         header('location: /user/list');
@@ -51,9 +58,10 @@ class UserController implements ControllerInterface
     }
 
     public static function edit($id): void
-    {
+    {   
+        $id = (int)$id;
         if (!is_numeric($id)) {
-            header('Location: /user/list'); 
+            header('Location: /user'); 
             exit();
         }
 
@@ -66,6 +74,7 @@ class UserController implements ControllerInterface
 
         //valida post
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            var_dump($_SERVER);
             $obUser->name = $_POST['name'];
             $obUser->birthdate = $_POST['birthdate'];
             $obUser->cpf = $_POST['cpf'];
@@ -75,15 +84,19 @@ class UserController implements ControllerInterface
             $obUser->street = $_POST['street'];
             $obUser->houseNumber = $_POST['house_number'];
             $obUser->complement = $_POST['complement'];
-            // Atualiza os dados do usuário no banco
+            var_dump($obUser);
             $updateResult = $obUser->atualizar();
+            
 
             if ($updateResult) {
-                // Redireciona após a atualização bem-sucedida
+                // redireciona após a atualização bem-sucedida
                 header('Location: /user/list');
                 exit();
             } else {
-                // Tratamento de erro, se necessário
+                //header('Location: /user/list');
+                // tratamento de erro
+                echo "Erro ao atualizar dados";
+                require(__DIR__ . '/App/Views/404.php');
             }
         }
 
@@ -99,11 +112,13 @@ class UserController implements ControllerInterface
             'house_number' => $obUser->houseNumber,
             'complement' => $obUser->complement
         ];
-
         include_once __DIR__ . '/../Views/Users/edit.view.php';
         exit();
     }
 
+    /**
+     * deleta user
+     */
     public static function delete($id)
     {
         if (!is_numeric($id)) {

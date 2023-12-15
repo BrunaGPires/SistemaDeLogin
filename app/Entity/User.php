@@ -7,30 +7,33 @@ use PDO;
 
 class User
 {
+    public function __construct(
+        public int $id,
+        public string $name,
+        public string $birthdate,
+        public string $cpf,
+        public ?string $gender = null,
+        public ?string $city,
+        public ?string $neighborhood,
+        public ?string $street,
+        public ?string $houseNumber,
+        public ?string $complement,
+    ) {
+    }
 
-    public int $id;
-    public string $name;
-    public string $birthdate;
-    public string $cpf;
-    public ?string $gender = null;
-    public ?string $city;
-    public ?string $neighborhood;
-    public ?string $street;
-    public ?string $houseNumber;
-    public ?string $complement;
-
-    public function __construct()
-    {
-        $this->id = 0; // Valor padrão para o ID, se aplicável
-        $this->name = '';
-        $this->birthdate = '';
-        $this->cpf = '';
-        $this->gender = '';
-        $this->city = '';
-        $this->neighborhood = '';
-        $this->street = '';
-        $this->houseNumber = '';
-        $this->complement = '';
+    public static function make(array $payload): self {
+        return new User(
+            id: $payload['id'],
+            name: $payload['name'],
+            birthdate: $payload['birthdate'],
+            cpf: $payload['cpf'],
+            gender: $payload['gender'],
+            city: $payload['city'],
+            neighborhood: $payload['neighborhood'],
+            street: $payload['street'],
+            houseNumber: $payload['house_number'],
+            complement: $payload['complement']
+        );
     }
 
     /**
@@ -56,11 +59,11 @@ class User
 
     public function atualizar()
     {
-        return (new Database('users'))->update('id = ' . $this->id, [
+        return (new Database('users'))->update('id = '.$this->id,[
             'name' => $this->name,
             'birthdate' => $this->birthdate,
             'cpf' => $this->cpf,
-            'gender' => $this->gender,
+            'gender'=> $this->gender,
             'city' => $this->city,
             'neighborhood' => $this->neighborhood,
             'street' => $this->street,
@@ -87,7 +90,7 @@ class User
      */
     public static function getUser($id)
     {
-        return (new Database('users'))->select('id = ' . $id)->fetchObject(self::class);
+        return self::make((new Database('users'))->select('id = ' . $id)->fetch(PDO::FETCH_ASSOC));
     }
 }
 

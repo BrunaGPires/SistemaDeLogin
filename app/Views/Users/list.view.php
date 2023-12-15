@@ -1,10 +1,12 @@
 <?php
 /**
  * @var array $users
+ * 
  */
 ?>
 
 <div class="container">
+    var_dump($users)
     <table class="table table-hover">
         <thead>
         <tr>
@@ -34,10 +36,10 @@
                 <td><?= $user['house_number'] ?> </td>
                 <td><?= $user['complement'] ?> </td>
                 <td>
-                    <a href="/user/edit?id=<?= $user['id'] ?>" class="btn btn-primary">Editar</a>
+                    <a href="/user/edit?id=/<?= $user['id'] ?>" class="btn btn-primary">Editar</a>
                 </td>
                 <td>
-                    <a href="/user/delete?id=<?= $user['id'] ?>" class="btn btn-danger">Excluir</a>
+                    <a href="/user/delete?id=/<?= $user['id'] ?>" class="btn btn-danger">Excluir</a>
                 </td>
             </tr>
             <?php

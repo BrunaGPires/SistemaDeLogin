@@ -64,9 +64,10 @@ class Database{
      */
     public function update($where,$values){
         $fields = array_keys($values);
+        $setFields = implode('=?, ', $fields) . '=?';
 
-        $query = 'UPDATE '.$this->table.' SET '.implode('=?,',$fields).'=? WHERE '.$where;
-
+        $query = 'UPDATE ' . $this->table . ' SET ' . $setFields . ' WHERE ' . $where;
+        var_dump($query);
         $this->execute($query,array_values($values));
 
         return true;

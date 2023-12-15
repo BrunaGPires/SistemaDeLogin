@@ -1,12 +1,11 @@
 <?php
 /**
  * @var \App\Entity\User $user
- * @var array $userData 
  */
 ?>
 <main class="container">
     <h2 class="mt-3">Excluir cadastro</h2>
-    <form form action="/user/edit?id=<?= $userData['id'] ?>" method="post">
+    <form form action="/user/delete?id=/<?= $user['id'] ?>" method="post">
         <div class="form-group">
             <p>Deseja exlcuir o cadastro?<strong><?=$obUser->name?></strong></p>
         </div>

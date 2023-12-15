@@ -1,12 +1,13 @@
 <?php
 /**
- * @var \App\Entity\User $user
- * @var array $userData 
+ * @var App\Entity\User $user
+ * @var array @userData
  */
 ?>
 
+
 <main class="container">
-    <form form action="/user/edit?id=<?= $userData['id'] ?>" method="post">
+    <form action="/user/edit?id=<?= $userData['id'] ?>" method="post">
         <legend>Dados Pessoais</legend>
             <table cellspacing="10">
                 <tr>
@@ -40,10 +41,10 @@
                     <td align="left">
                         <select name="gender">
                             <option value="" hidden>Selecione o gênero</option>
-                            <option value="female" <?= isset($user->gender) && $user->gender === 'Feminino' ? 'selected' : '' ?>>Feminino</option> 
-                            <option value="male" <?= isset($user->gender) && $user->gender === 'Masculino' ? 'selected' : '' ?>>Masculino</option>
-                            <option value="nb" <?= isset($user->gender) && $user->gender === 'Não-binário' ? 'selected' : '' ?>>Não-binário</option>
-                            <option value="NA" <?= isset($user->gender) && $user->gender === 'Outro' ? 'selected' : '' ?>>Outro</option>
+                            <option value="female" <?= isset($userData['$gender']) && $userData['$gender'] === 'Feminino' ? 'selected' : '' ?>>Feminino</option> 
+                            <option value="male" <?= isset($userData['$gender']) && $userData['$gender'] === 'Masculino' ? 'selected' : '' ?>>Masculino</option>
+                            <option value="nb" <?= isset($userData['$gender']) && $userData['$gender'] === 'Não-binário' ? 'selected' : '' ?>>Não-binário</option>
+                            <option value="NA" <?= isset($userData['$gender']) && $userData['$gender'] === 'Outro' ? 'selected' : '' ?>>Outro</option>
                         </select>
                     </td>
                 </tr>
@@ -62,7 +63,7 @@
                         <label for="neighborhood">Bairro: </label>
                     </td>
                     <td align="left">
-                        <input type="text" name="neighborhood" value="<?= $userData['neighborhood'] ?? '' ?>">
+                        <input type="text" name="neighborhood" value="<?= $userData['neighborhood']?? '' ?>">
                     </td>
                 </tr>
                 <tr>

@@ -15,33 +15,23 @@ rsort($uri);
 
 $controller = isset($uri[0]) ? $uri[0] : 'home';
 $action = isset($uri[1]) ? explode("?", $uri[1])[0] : 'view';
+$routeParam = $uri[2] ?? null;
 
-$params = [
+$payload = [
     'controller' => $controller,
     'action' => $action,
-    'item' => $_GET['id'] ?? null,
+    'routeParam' => $routeParam,
 ];
 
-$route = 'App\\Controllers\\' . ucfirst($params['controller']) . 'Controller::' . $params['action'];
-$classPath = '\\App\\Controllers\\' . ucfirst($params['controller']) . 'Controller';
+$route = 'App\\Controllers\\' . ucfirst($payload['controller']) . 'Controller::' . $payload['action'];
+$classPath = '\\App\\Controllers\\' . ucfirst($payload['controller']) . 'Controller';
 
 include __DIR__ . '/includes/header.php';
-if (method_exists($classPath, $params['action'])) {
-    if ($params['controller'] === 'user' && $params['action'] === 'edit') {
-        // rota para action edit pegando o id na url
-        $id = isset($_GET['id']) ? $_GET['id'] : null;
-        $response = call_user_func($route, $id); // passa id como parametro
-    } elseif($params['controller'] === 'user' && $params['action'] === 'delete')
-    {
-        // rota para action delete pegando o id na url
-        $id = isset($_GET['id']) ? $_GET['id'] : null;
-        $response = call_user_func($route, $id);
-    } else {
-        $response = call_user_func($route);
-    }
-    echo $response;
-} else {
-    echo 'Controller: ' . $params['controller'] . ', Action: ' . $params['action'];
+
+if (!method_exists($classPath, $payload['action'])) {
+    echo 'Controller: ' . $payload['controller'] . ', Action: ' . $payload['action'];
     require(__DIR__ . '/App/Views/404.php');
 }
-die();
+
+$response = call_user_func($route, $payload['routeParam']);
+echo $response;
