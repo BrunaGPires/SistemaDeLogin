@@ -106,7 +106,6 @@ class UserController implements ControllerInterface
             'house_number' => $obUser->houseNumber,
             'complement' => $obUser->complement
         ];
-
         include_once __DIR__ . '/../Views/Users/edit.view.php';
         exit();
     }
