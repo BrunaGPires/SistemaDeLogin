@@ -25,6 +25,11 @@ class UserController implements ControllerInterface
         include_once __DIR__ . '/../Views/Users/list.view.php';
     }
 
+    public static function listByName(): void
+    {
+        
+    }
+
     public static function create(): void
     {
         if (!isset($_POST['name'], $_POST['birthdate'], $_POST['cpf'], $_POST['gender'],

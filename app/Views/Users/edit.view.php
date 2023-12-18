@@ -39,13 +39,16 @@
                         <label for="gender">Gênero: </label>
                     </td>
                     <td align="left">
-                        <select name="gender">
-                            <option value="" hidden>Selecione o gênero</option>
-                            <option value="Feminino" <?= isset($userData['$gender']) && $userData['$gender'] === 'Feminino' ? 'selected' : '' ?>>Feminino</option> 
-                            <option value="Masculino" <?= isset($userData['$gender']) && $userData['$gender'] === 'Masculino' ? 'selected' : '' ?>>Masculino</option>
-                            <option value="Não-binário" <?= isset($userData['$gender']) && $userData['$gender'] === 'Não-binário' ? 'selected' : '' ?>>Não-binário</option>
-                            <option value="Outro" <?= isset($userData['$gender']) && $userData['$gender'] === 'Outro' ? 'selected' : '' ?>>Outro</option>
-                        </select>
+                    <select name="gender">
+                        <option value="" hidden>Selecione o gênero</option>
+                        <?php
+                        $genders = ['Feminino', 'Masculino', 'Não-binário', 'Outro'];
+                        foreach ($genders as $gender) {
+                            $selected = ($userData['gender'] ?? '') === $gender ? 'selected' : '';
+                            echo "<option value=\"$gender\" $selected>$gender</option>";
+                        }
+                        ?>
+                    </select>
                     </td>
                 </tr>
             </table>

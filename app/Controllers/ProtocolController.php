@@ -60,7 +60,7 @@ class ProtocolController implements ControllerInterface
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
             $obProtocol->description = $_POST['description'];
             $obProtocol->deadline = $_POST['deadline'];
-            $obProtocol->user::getUser($_POST['user_id']);
+            $obProtocol->user = User::getUser($_POST['user_id']);
             $updateResult = $obProtocol->atualizar();
 
             if ($updateResult) {

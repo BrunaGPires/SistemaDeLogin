@@ -1,10 +1,14 @@
 <?php
 /**
  * @var array $users
- * 
  */
 ?>
-
+<div class="container">
+<form class="d-flex" method="post">
+        <input class="form-control me-sm-2" type="search" placeholder="Buscar">
+        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Pesquisar</button>
+      </form>
+</div>
 <div class="container">
     <table class="table table-hover">
         <thead>
@@ -28,7 +32,7 @@
                 <td><?= $user['name'] ?> </td>
                 <td><?= date('d/m/Y', strtotime($user['birthdate'])) ?> </td>
                 <td><?= $user['cpf'] ?> </td>
-                <td><?= $user['gender'] ?> </td>s
+                <td><?= $user['gender'] ?> </td>
                 <td><?= $user['city'] ?> </td>
                 <td><?= $user['neighborhood'] ?> </td>
                 <td><?= $user['street'] ?> </td>

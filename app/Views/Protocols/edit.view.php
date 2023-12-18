@@ -35,13 +35,11 @@ $users = \App\Entity\User::getUsers();
                 </td>
                 <td align="left">
                 <select name="user_id">
-                            <?php 
-                                foreach ($users as $user) {
-                                    echo "<option value=\"{$user->id}\">{$user->name}</option>";
-                                }
-                            ?>
-                        </select>
-                    </td>
+                    <?php foreach ($users as $user) {
+                        $selected = ($user->id === $protocolData['user_id']) ? 'selected' : '';
+                        echo "<option value=\"{$user->id}\" $selected>{$user->name}</option>";
+                    } ?>
+                </select>
                 </td>
             </tr>
         </table>

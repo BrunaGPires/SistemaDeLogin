@@ -95,6 +95,7 @@ class Database{
         $query = 'SELECT '.$fields.' FROM '.$this->table.' '.$where.' '.$order.' '.$limit;
         return $this->execute($query);
     }
+
     /**
      * realiza consulta com join para passar nome de user no list.view.php
      */
@@ -106,6 +107,14 @@ class Database{
         $query = 'SELECT users.id AS user_id, users.name AS user_name, protocols.* FROM users INNER JOIN protocols ON users.id = protocols.user_id ' . $where . ' ' . $order . ' ' . $limit;
     
         return $this->execute($query);
+    }
+
+    /**
+     * consulta usuario por nome
+     */
+    public function selectByName()
+    {
+        
     }
 }
 

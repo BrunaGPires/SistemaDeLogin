@@ -4,7 +4,6 @@
  */
  // pega users do banco de dados
 $users = \App\Entity\User::getUsers();
-var_dump($users);
 ?>
 
 <main class="container">
