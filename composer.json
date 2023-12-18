@@ -1,0 +1,8 @@
+{
+    "name":"bruna/desafio",
+    "autoload": {
+        "psr-4": {
+            "App\\":"app/"
+        }
+    }
+}
