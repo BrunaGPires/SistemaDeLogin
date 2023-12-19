@@ -4,8 +4,8 @@
  */
 ?>
 <div class="container">
-<form class="d-flex" method="post">
-        <input class="form-control me-sm-2" type="search" placeholder="Buscar">
+<form class="d-flex" method="get">
+        <input class="form-control me-sm-2" type="search" placeholder="Buscar" name="find"> 
         <button class="btn btn-secondary my-2 my-sm-0" type="submit">Pesquisar</button>
       </form>
 </div>

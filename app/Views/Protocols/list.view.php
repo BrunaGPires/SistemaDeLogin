@@ -4,6 +4,12 @@
  */
 ?>
 <div class="container">
+<form class="d-flex" method="get">
+    <input class="form-control me-sm-2" type="search" placeholder="Buscar" name="find"> 
+    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Pesquisar</button>
+</form>
+</div>
+<div class="container">
     <table class="table table-hover">
         <thead>
         <tr>

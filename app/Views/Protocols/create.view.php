@@ -35,6 +35,7 @@ $users = \App\Entity\User::getUsers();
                     </td>
                     <td align="left">
                     <select name="user_id">
+                        <option value="" hidden>Selecione o contribuinte</option>
                             <?php 
                                 foreach ($users as $user) {
                                     echo "<option value=\"{$user->id}\">{$user->name}</option>";

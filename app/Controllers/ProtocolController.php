@@ -6,6 +6,7 @@ use App\Db\Database;
 use App\Entity\Protocol;
 use App\Entity\User;
 use PDO;
+use DateTime;
 
 class ProtocolController implements ControllerInterface
 {
@@ -19,8 +20,15 @@ class ProtocolController implements ControllerInterface
     public static function list(): void
     {
         $db = new Database('protocols');
+        $protocols = [];
 
-        $all = $db->selectJoin();
+        if(isset($_GET['find']) && !empty($_GET['find']))
+        {
+            $all = $db->selectByDescription($_GET['find']);
+        } else {
+            $all = $db->selectJoin();
+        }
+
         $protocols = $all->fetchAll(PDO::FETCH_ASSOC);
 
         include_once __DIR__ . '/../Views/Protocols/list.view.php';

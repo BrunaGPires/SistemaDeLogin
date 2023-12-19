@@ -97,9 +97,24 @@ class Database{
     }
 
     /**
+     * realiza consulta usuario por nome
+     * SELECT * FROM users WHERE name LIKE '%fulano%';
+     */
+    public function selectByName($name, $where = null, $fields = '*', $order = null, $limit = null)
+    {
+        $where = strlen($where) ? 'WHERE name LIKE ? ' . $where : 'WHERE name LIKE ?';
+        $order = strlen($order) ? 'ORDER BY ' . $order : '';
+        $limit = strlen($limit) ? 'LIMIT ' . $limit : '';
+        $name = '%' . $name . '%';
+
+        $query = 'SELECT ' . $fields . ' FROM ' . $this->table . ' ' . $where . ' ' . $order . ' ' . $limit;
+        return $this->execute($query, [$name]);
+    }
+
+    /**
      * realiza consulta com join para passar nome de user no list.view.php
      */
-    public function selectJoin($where = null, $order = null, $limit = null, $fields = '*'){
+    public function selectJoin($where = null, $order = null, $limit = null){
         $where = strlen($where) ? 'WHERE '.$where : '';
         $order = strlen($order) ? 'ORDER BY '.$order : '';
         $limit = strlen($limit) ? 'LIMIT '.$limit : '';
@@ -110,11 +125,19 @@ class Database{
     }
 
     /**
-     * consulta usuario por nome
+     * realiza consulta de protocolos em determinada data
      */
-    public function selectByName()
+    public function selectByDescription($description, $where = null, $fields = '*', $order = null, $limit = null)
     {
-        
+
+        $where = strlen($where) ? 'WHERE LOWER(description) LIKE ? ' . $where : 'WHERE LOWER(description) LIKE ?';
+        $order = strlen($order) ? 'ORDER BY ' . $order : '';
+        $limit = strlen($limit) ? 'LIMIT ' . $limit : '';
+
+        $description = '%' . strtolower($description) . '%';
+
+        $query = 'SELECT ' . $fields . ' FROM ' . $this->table . ' ' . $where . ' ' . $order . ' ' . $limit;
+        return $this->execute($query, [$description]);
     }
 }
 

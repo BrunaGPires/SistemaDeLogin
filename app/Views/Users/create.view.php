@@ -16,7 +16,7 @@
                         <label for="name">Nome completo: </label>
                     </td>
                     <td align="left">
-                        <input type="text" name="name">
+                        <input type="text" name="name" placeholder="Nome Completo">
                     </td>
                 </tr>
                 <tr>
@@ -29,10 +29,10 @@
                 </tr>
                 <tr>
                     <td>
-                        <label for="cpf">CPF: </label>
+                        <label for="cpf" >CPF: </label>
                     </td>
                     <td align="left">
-                        <input type="text" name="cpf" size="15" maxlength="15">
+                        <input type="text" name="cpf" size="15" maxlength="15" placeholder="000.000.000-00">
                     </td>
                 </tr>
                 <tr>

@@ -19,15 +19,17 @@ class UserController implements ControllerInterface
     {
         $db = new Database('users');
 
-        $all = $db->select();
+        $users = [];
+        // verifica se o find existe ou não
+        if (isset($_GET['find']) && !empty($_GET['find'])) {
+            $all = $db->selectByName($_GET['find']);
+        } else {
+            $all = $db->select();
+        }
+        
         $users = $all->fetchAll(PDO::FETCH_ASSOC);
 
         include_once __DIR__ . '/../Views/Users/list.view.php';
-    }
-
-    public static function listByName(): void
-    {
-        
     }
 
     public static function create(): void
