@@ -31,13 +31,10 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/user/list"><img src="/app/Views/assets/userbluebig.png" height="50" width="50"></a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/protocol/list"><img src="/app/Views/assets/filebluebig.png" height="50" width="50"></a>
-                    </li>
                 </ul>
                 <ul class="navbar-nav d-flex list-inline">
                     <li class="nav-item" >
-                        <a class="navbar-brand nav-link disabled"  aria-disabled="true" href="#">Registro de Protocolos</a>
+                        <a class="navbar-brand nav-link disabled"  aria-disabled="true" href="#">Sistema de Login</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav d-flex">

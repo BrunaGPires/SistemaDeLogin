@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'bruna/desafio',
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
-        'reference' => NULL,
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'reference' => 'a08e9768a1583f6678cbb8ab1f04c395cb936407',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -11,9 +11,9 @@
     ),
     'versions' => array(
         'bruna/desafio' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
-            'reference' => NULL,
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => 'a08e9768a1583f6678cbb8ab1f04c395cb936407',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

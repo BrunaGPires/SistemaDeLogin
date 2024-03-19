@@ -1,6 +1,6 @@
-# Sistema de Atendimento ao Contribuinte
+# Sistema de Validação de Login
 
-Sistema desenvolvido para gerenciar o atendimento a contribuintes, permitindo o cadastro de indivíduos, registro de protocolos e prazos.
+
 
 ## Tecnologias Utilizadas
 
@@ -12,11 +12,7 @@ Sistema desenvolvido para gerenciar o atendimento a contribuintes, permitindo o 
 
 ## Funcionalidades
 
-- **Cadastro de Contribuintes:** Registro de informações pessoais dos contribuintes.
-- **Registro de Protocolos:** Possibilidade de criar protocolos para os contribuintes, incluindo descrições e prazos.
-- **Gestão de Prazos:** Acompanhamento de prazos estabelecidos para cada protocolo.
-- **Pesquisa de Contribuintes por nome:** Busca contribuintes pelo nome.
-- **Pesquisa de Protocolos por descrição:** Filtragem de protocolos com base em suas descrições.
+- **Cadastro de usuários:** Cadastro de usuários.
 
 ## Instalação e Configuração
 
