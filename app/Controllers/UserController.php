@@ -34,8 +34,7 @@ class UserController implements ControllerInterface
 
     public static function create(): void
     {
-        if (!isset($_POST['name'], $_POST['birthdate'], $_POST['cpf'], $_POST['gender'],
-             $_POST['city'], $_POST['neighborhood'], $_POST['street'], $_POST['house_number'], $_POST['complement'])) 
+        if (!isset($_POST['name'], $_POST['email'], $_POST['password'])) 
         {
             header('Location: /user');
             die;
@@ -44,14 +43,8 @@ class UserController implements ControllerInterface
         // cria um novo objeto User e atribui os valores
         $userData = [
             'name' => $_POST['name'],
-            'birthdate' => $_POST['birthdate'],
-            'cpf' => $_POST['cpf'],
-            'gender' => $_POST['gender'],
-            'city' => $_POST['city'],
-            'neighborhood' => $_POST['neighborhood'],
-            'street' => $_POST['street'],
-            'houseNumber' => $_POST['house_number'],
-            'complement' => $_POST['complement']
+            'email' => $_POST['email'],
+            'password' => $_POST['password']
         ];
 
         // cria um novo usuário
@@ -80,14 +73,8 @@ class UserController implements ControllerInterface
         // valida post
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $obUser->name = $_POST['name'];
-            $obUser->birthdate = $_POST['birthdate'];
-            $obUser->cpf = $_POST['cpf'];
-            $obUser->gender = $_POST['gender'];
-            $obUser->city = $_POST['city'];
-            $obUser->neighborhood = $_POST['neighborhood'];
-            $obUser->street = $_POST['street'];
-            $obUser->houseNumber = $_POST['house_number'];
-            $obUser->complement = $_POST['complement'];
+            $obUser->email = $_POST['email'];
+            $obUser->password = $_POST['password'];
             $updateResult = $obUser->atualizar();
             
             if ($updateResult) {
@@ -104,14 +91,8 @@ class UserController implements ControllerInterface
         $userData = [
             'id' => $obUser->id,
             'name' => $obUser->name,
-            'birthdate' => $obUser->birthdate,
-            'cpf' => $obUser->cpf,
-            'gender' => $obUser->gender,
-            'city' => $obUser->city,
-            'neighborhood' => $obUser->neighborhood,
-            'street' => $obUser->street,
-            'house_number' => $obUser->houseNumber,
-            'complement' => $obUser->complement
+            'email' => $obUser->email,
+            'password' => $obUser->password
         ];
         include_once __DIR__ . '/../Views/Users/edit.view.php';
         exit();
@@ -153,4 +134,13 @@ class UserController implements ControllerInterface
         exit();
     }
 
+    /**
+     * sai da conta
+     */
+    public static function logout(): void 
+    {
+        $users = [];
+        include_once __DIR__ . '/../Views/Users/logout.view.php';
+        exit();
+    }
 }

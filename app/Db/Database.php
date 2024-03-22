@@ -13,7 +13,7 @@ class Database{
     private $connection;
     private $dbName;    
 
-    public function __construct($table = null, $dbName = 'users')
+    public function __construct($table = null, $dbName = 'user')
     {
         $this->table = $table;
         $this->dbName = $dbName;

@@ -13,7 +13,7 @@
             <table cellspacing="10">
                 <tr>
                     <td>
-                        <label for="name">Nome completo: </label>
+                        <label for="name">Nome: </label>
                     </td>
                     <td align="left">
                         <input type="text" name="name" placeholder="Nome Completo">
@@ -21,70 +21,18 @@
                 </tr>
                 <tr>
                     <td>
-                        <label for="birthdate">Nascimento: </label>
+                        <label for="email">Email: </label>
                     </td>
                     <td align="left">
-                        <input type="date" name="birthdate">
+                        <input type="text" name="email" placeholder="Email">
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <label for="cpf" >CPF: </label>
+                        <label for="password">Senha: </label>
                     </td>
                     <td align="left">
-                        <input type="text" name="cpf" size="15" maxlength="15" placeholder="000.000.000-00">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="gender">Gênero: </label>
-                    </td>
-                    <td align="left">
-                        <select name="gender">
-                            <option value="" hidden>Selecione o gênero</option>
-                            <option value="Feminino">Feminino</option> 
-                            <option value="Masculino">Masculino</option>
-                            <option value="Não-binário">Não-binário</option>
-                            <option value="NA">Outro</option>
-                        </select>
-                    </td>
-                </tr>
-            </table>
-            <br />
-            <legend>Endereço</legend>
-            <table cellspacing="10">
-                <tr>
-                    <td>
-                        <label for="city">Cidade: </label>
-                    </td>
-                    <td align="left">
-                        <input type="text" name="city">
-                    </td>
-                    <td>
-                        <label for="neighborhood">Bairro: </label>
-                    </td>
-                    <td align="left">
-                        <input type="text" name="neighborhood">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="street">Rua: </label>
-                    </td>
-                    <td align="left">
-                        <input type="text" name="street">
-                    </td>
-                    <td>
-                        <label for="houseNumber">Numero: </label>
-                    </td>
-                    <td align="left">
-                        <input type="text" name="house_number" size="4">
-                    </td>
-                    <td>
-                        <label for="complement">Complemento: </label>
-                    </td>
-                    <td align="left">
-                        <input type="text" name="complement">
+                        <input type="password" name="password" placeholder="Senha">
                     </td>
                 </tr>
             </table>

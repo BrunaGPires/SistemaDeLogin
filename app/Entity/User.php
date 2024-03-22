@@ -10,14 +10,8 @@ class User
     public function __construct(
         public int $id,
         public string $name,
-        public string $birthdate,
-        public string $cpf,
-        public ?string $gender = null,
-        public ?string $city,
-        public ?string $neighborhood,
-        public ?string $street,
-        public ?string $houseNumber,
-        public ?string $complement,
+        public string $email,
+        public string $password,
     ) {
     }
 
@@ -25,14 +19,8 @@ class User
         return new User(
             id: $payload['id'] ?? 0,
             name: $payload['name'],
-            birthdate: $payload['birthdate'],
-            cpf: $payload['cpf'],
-            gender: $payload['gender'],
-            city: $payload['city'],
-            neighborhood: $payload['neighborhood'],
-            street: $payload['street'],
-            houseNumber: $payload['house_number'],
-            complement: $payload['complement']
+            email: $payload['email'],
+            password: $payload['password']
         );
     }
 
@@ -44,14 +32,8 @@ class User
         $obDatabase = new Database('users');
         $this->id = $obDatabase->insert([
             'name' => $this->name,
-            'birthdate' => $this->birthdate,
-            'cpf' => $this->cpf,
-            'gender' => $this->gender,
-            'city' => $this->city,
-            'neighborhood' => $this->neighborhood,
-            'street' => $this->street,
-            'house_number' => $this->houseNumber,
-            'complement' => $this->complement
+            'email' => $this->email,
+            'password' => $this->password,
         ]);
 
         return true;
@@ -61,14 +43,8 @@ class User
     {
         return (new Database('users'))->update('id = '.$this->id,[
             'name' => $this->name,
-            'birthdate' => $this->birthdate,
-            'cpf' => $this->cpf,
-            'gender'=> $this->gender,
-            'city' => $this->city,
-            'neighborhood' => $this->neighborhood,
-            'street' => $this->street,
-            'house_number' => $this->houseNumber,
-            'complement' => $this->complement
+            'email' => $this->email,
+            'password' => $this->password,
         ]);
     }
 
