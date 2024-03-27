@@ -5,13 +5,6 @@
 ?>
 
 <div class="container">
-<?php
-        foreach ($users as $user) {
-            ?>
-            <p>Valeu falou,'nome'</p>
-            <?= $user['name'] ?>
-            <p>!</p>
-            <?php
-        }
-        ?>
+    <p>Valeu falou,'nome'</p>
+    <p>!</p>
 </div>

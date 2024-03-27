@@ -7,7 +7,7 @@
 <main class="container">
     <h2 class="mt-3"><?=$title?></h2>
 
-    <form action="/user/create" method="post">
+    <form action="/user/register" method="post">
 
         <legend>Dados Pessoais</legend>
             <table cellspacing="10">

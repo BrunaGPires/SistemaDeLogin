@@ -27,7 +27,7 @@ class User
     /**
      * cadastra novo user no banco
      */
-    public function cadastrar()
+    public function registrar()
     {
         $obDatabase = new Database('users');
         $this->id = $obDatabase->insert([
@@ -39,18 +39,12 @@ class User
         return true;
     }
 
-    public function atualizar()
+    /**
+     * login
+     */
+    public function logar()
     {
-        return (new Database('users'))->update('id = '.$this->id,[
-            'name' => $this->name,
-            'email' => $this->email,
-            'password' => $this->password,
-        ]);
-    }
 
-    public function excluir()
-    {
-        return (new Database('users'))->delete('id = ' . $this->id);
     }
 
     /**
@@ -68,5 +62,13 @@ class User
     {
         return self::make((new Database('users'))->select('id = ' . $id)->fetch(PDO::FETCH_ASSOC));
     }
+
+    //validateEmail
+    public static function getEmail($email)
+    {
+        return self::make((new Database('users'))->findUserByEmail('email = ' . $email)->fetch(PDO::FETCH_ASSOC));
+    }
+
+    //validatePassword
 }
 ?>

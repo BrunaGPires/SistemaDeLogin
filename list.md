@@ -18,8 +18,9 @@ Referências e Recursos Utilizados
 
 Project Checklist
 
+- [x] **Add registry**
 - [ ] **Add login**
-- [ ] **Get user name after login and print on screen**
+- [x] **Get user name after login and print on screen**
 - [ ] **Add logout screen**
 - [ ] **Add redirecting to login screen after logout screen is displayed**
 

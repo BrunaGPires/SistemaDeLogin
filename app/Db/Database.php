@@ -60,31 +60,6 @@ class Database{
     }
 
     /**
-     * atualiza dados
-     */
-    public function update($where, $values){
-        $fields = array_keys($values);
-        $setFields = implode('=?, ', $fields) . '=?';
-
-        $query = 'UPDATE ' . $this->table . ' SET ' . $setFields . ' WHERE ' . $where;
-        
-        $this->execute($query,array_values($values));
-
-        return true;
-    }
-
-    /**
-     * exclui dados
-     */
-    public function delete($where){
-        $query = 'DELETE FROM '.$this->table.' WHERE '.$where;
-
-        $this->execute($query);
-
-        return true;
-    }
-
-    /**
      * realiza consulta
      */
     public function select($where = null, $order = null, $limit = null, $fields = '*'){
@@ -124,22 +99,15 @@ class Database{
         return $this->execute($query);
     }
 
-    /**
-     * realiza consulta de protocolos em determinada data
-     */
-    public function selectByDescription($description, $where = null, $fields = '*', $order = null, $limit = null)
+    public function findUserByEmail($email, $where = null, $fields = '*', $order = null, $limit = null)
     {
-
-        $where = strlen($where) ? 'WHERE LOWER(description) LIKE ? ' . $where : 'WHERE LOWER(description) LIKE ?';
+        $where = strlen($where) ? 'WHERE name LIKE ? ' . $where : 'WHERE name LIKE ?';
         $order = strlen($order) ? 'ORDER BY ' . $order : '';
         $limit = strlen($limit) ? 'LIMIT ' . $limit : '';
-
-        $description = '%' . strtolower($description) . '%';
+        $email = '%' . $email . '%';
 
         $query = 'SELECT ' . $fields . ' FROM ' . $this->table . ' ' . $where . ' ' . $order . ' ' . $limit;
-        return $this->execute($query, [$description]);
+        return $this->execute($query, [$email]);
     }
 }
-
-
 ?>

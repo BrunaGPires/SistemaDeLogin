@@ -11,7 +11,7 @@ class UserController implements ControllerInterface
     public static function view(): void
     {
         $title = 'Criar Usuário';
-        include_once __DIR__ . '/../Views/Users/create.view.php';
+        include_once __DIR__ . '/../Views/Users/register.view.php';
     }
 
 
@@ -32,7 +32,7 @@ class UserController implements ControllerInterface
         include_once __DIR__ . '/../Views/Users/list.view.php';
     }
 
-    public static function create(): void
+    public static function register(): void
     {
         if (!isset($_POST['name'], $_POST['email'], $_POST['password'])) 
         {
@@ -51,95 +51,52 @@ class UserController implements ControllerInterface
         $obUser = User::make($userData);
 
         // salva o novo usuário no banco de dados
-        $obUser->cadastrar();
+        $obUser->registrar();
 
         header('location: /user/list');
         exit;
     }
 
     /**
-     * edita um user
+     * login
+     * entra na conta
      */
-    public static function edit($id): void
-    {   
-        $obUser = User::getUser($id);
-        
-        // valida user
-        if (!$obUser) {
-            header('location: /user/list'); 
-            exit();
-        }
-        
-        // valida post
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $obUser->name = $_POST['name'];
-            $obUser->email = $_POST['email'];
-            $obUser->password = $_POST['password'];
-            $updateResult = $obUser->atualizar();
-            
-            if ($updateResult) {
-                // redireciona após a atualização bem-sucedida
-                header('location: /user/list');
-                exit();
-            } else {
-                // tratamento de erro
-                echo "Erro ao atualizar dados";
-                require(__DIR__ . '/App/Views/404.php');
-            }
-        }
-
-        $userData = [
-            'id' => $obUser->id,
-            'name' => $obUser->name,
-            'email' => $obUser->email,
-            'password' => $obUser->password
-        ];
-        include_once __DIR__ . '/../Views/Users/edit.view.php';
-        exit();
-    }
-
-    /**
-     * deleta user
-     */
-    public static function delete($id): void
+    public static function login(): void
     {
-        $obUser = User::getUser($id);
-
-        // valida user
-        if (!$obUser) {
-            header('location: /user/list'); 
-            exit();
-        }
-        
-        // valida $_post
-        if($_SERVER['REQUEST_METHOD'] === 'POST'){
-            $updateResult = $obUser->excluir();
-            
-            if ($updateResult) {
-                // redireciona após a atualização bem-sucedida
-                header('location: /user/list');
-                exit();
-            } else {
-                // tratamento de erro
-                echo "Erro ao atualizar dados";
-                require(__DIR__ . '/App/Views/404.php');
-            }
+        if (!isset($_POST['email'], $_POST['password'])) {
+            header('Location: /user/list');
+            exit;
         }
 
-        $userData = [
-            'id' => $obUser->id
-        ];
-        
-        include_once __DIR__ . '/../Views/Users/delete.view.php';
-        exit();
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+
+        $user = User::getEmail($email);
+
+        if ($user && password_verify($password, $user->password)) {
+            // Autenticação bem-sucedida
+            session_start();
+            $_SESSION['user_id'] = $user->id;
+            header('Location: /');
+            exit;
+        } else {
+            // Autenticação falhou
+            echo "Login failed. Please check your credentials.";
+            exit;
+        }
     }
+
+     /**
+      * autentica login
+      */
 
     /**
      * sai da conta
      */
     public static function logout(): void 
     {
-        $users = [];
+        session_unset();
+        session_destroy();
         include_once __DIR__ . '/../Views/Users/logout.view.php';
         exit();
     }

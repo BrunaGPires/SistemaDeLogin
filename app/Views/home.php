@@ -26,8 +26,8 @@
                 </div>
             </div>
             <div class="row g-3">
-                    <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
-                    <a class="btn btn-lg btn-primary btn-block" href="/user/create">Cadastrar</a>
+                    <a class="btn btn-lg btn-primary btn-block" href="user/login">Login</a>
+                    <a class="btn btn-lg btn-primary btn-block" href="/user/register">Cadastrar</a>
                 </div>
         </fieldset>
     </div>
